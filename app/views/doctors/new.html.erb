@@ -1,0 +1,26 @@
+<h1>Doctors Registration</h1>
+
+<%= form_with model: @doctor do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+  <%= form.label :phone %><br>
+  <%= form.text_field :phone %>
+</div>
+  <div>
+    <%= form.label :adress %><br>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :specialization %><br>
+    <%= form.text_field :specialization %>
+  </div>
+
+  <div><br>
+    <%= form.submit %>
+  </div>
+
+<% end %>

@@ -1,11 +1,11 @@
 <h1>Hospital Management</h1>
-
+<%= link_to "New Doctor",new_doctor_path %>
 <ul>
   <% @doctors.each do |doctor| %>
     <li>
       <a href="/doctors/<%= doctor.id %>">
-        <%= doctor.title %>
+        <%= doctor.name %>
       </a>
     </li>
   <% end %>
-</ul>
+  </ul>
