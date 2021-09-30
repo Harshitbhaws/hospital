@@ -1,11 +1,11 @@
 <h1>Hospital Management</h1>
-<%= link_to "New Doctor",new_doctor_path %>
-<ul>
+<%= link_to "New Doctor",new_doctor_path %><br><br>
+<td>
   <% @doctors.each do |doctor| %>
-    <li>
-      <a href="/doctors/<%= doctor.id %>">
-        <%= doctor.name %>
-      </a>
-    </li>
+   <tr> 
+      <%= link_to doctor.name,doctor_path(doctor) %>&nbsp
+      <%= link_to "Edit",edit_doctor_path(doctor) %>
+      <%= link_to "Delete",doctor_path(doctor),method: :delete %>
+    </tr><br>
   <% end %>
-  </ul>
+  </td>

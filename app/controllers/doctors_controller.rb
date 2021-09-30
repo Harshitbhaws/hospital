@@ -19,7 +19,9 @@ class DoctorsController < ApplicationController
       render :new
     end
   end
-
+  def edit
+    @doctor = Doctor.find(params[:id])
+  end
 
   def update
     @doctor = Doctor.find(params[:id])
@@ -29,6 +31,12 @@ class DoctorsController < ApplicationController
     else
       render :edit
     end
+  end
+  def destroy
+    @doctor = Doctor.find(params[:id])
+    @doctor.destroy
+
+    redirect_to doctors_path
   end
   private
     def doctors_params

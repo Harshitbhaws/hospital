@@ -1,0 +1,28 @@
+
+
+<%= form_with model: patient do |form| %>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+    <%= form.label :phone %><br>
+    <%= form.text_field :phone %>
+  </div>
+    <div>
+      <%= form.label :age %><br>
+      <%= form.text_field :age %>
+    </div>
+    <div>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </div>
+    <div>
+      <%= form.label :disease %><br>
+      <%= form.text_field :disease %>
+    </div>
+  
+    <div><br>
+      <%= form.submit %>
+    </div>
+  <% end %>
