@@ -1,11 +1,11 @@
 <h1>Patient</h1>
 <%= link_to "New Patient",new_patient_path %><br><br>
 <td>
-  <% @patients.each do |patients| %>
+  <% @patients.each do |patient| %>
    <tr> 
-      <%= link_to patient.name,patient_path(doctor) %>&nbsp
-      <%= link_to "Edit",edit_patient_path(doctor) %>
-      <%= link_to "Delete",patient_path(doctor),method: :delete %>
+      <%= link_to patient.name,patient_path(patient) %>&nbsp
+      <%= link_to "Edit",edit_patient_path(patient) %>
+      <%= link_to "Delete",patient_path(patient),method: :delete %>
     </tr><br>
   <% end %>
   </td>
