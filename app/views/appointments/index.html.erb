@@ -1,0 +1,11 @@
+<h1>Appointments#index</h1>
+<%= link_to "Book Appointment",new_appointment_path %><br><br>
+<td>
+  <% @appointments.each do |appointment| %>
+   <tr> 
+      <%= link_to appointment.name,appointments_path(appointment) %>&nbsp
+      <%= link_to "Edit",edit_appointment_path(appointment) %>
+      <%= link_to "Cancel",appointment_path(appointment),method: :delete %>
+    </tr><br>
+  <% end %>
+  </td>
