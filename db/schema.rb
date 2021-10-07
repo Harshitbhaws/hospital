@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_132519) do
+ActiveRecord::Schema.define(version: 2021_10_06_085343) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "name"
     t.integer "phone"
     t.string "address"
-    t.integer "date"
+    t.date "date"
     t.string "disease"
     t.string "text"
     t.datetime "created_at", precision: 6, null: false

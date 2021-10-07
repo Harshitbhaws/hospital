@@ -1,4 +1,6 @@
 <% if current_user.present?  %>
     Logged in as <%= current_user.email %>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete	%>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %> 
+    <%= link_to "signin",new_user_session_path %>
+    <%= link_to "signup",new_user_registration_path %>
 <% end %>

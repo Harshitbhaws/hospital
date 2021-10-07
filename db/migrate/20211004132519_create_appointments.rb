@@ -4,7 +4,7 @@ class CreateAppointments < ActiveRecord::Migration[6.1]
       t.string :name
       t.integer :phone
       t.string :address
-      t.integer :date
+      t.date :date
       t.string :disease
       t.string :text
 
