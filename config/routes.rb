@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     resources :doctors
     resources :patients
     resources :appointments
+    get 'my_appointments', to: 'appointments#my_appointments'
+
 end
