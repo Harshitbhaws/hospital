@@ -1,6 +1,10 @@
 <% if current_user.present?  %>
     Logged in as <%= current_user.email %>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>&nbsp
-    <%= link_to "My Appointments",my_appointments_path %>
-    
+    <% if current_user.patient? %>
+        <%= link_to "My Appointments",my_appointments_path %>
+        <%= link_to "Book Appointment",new_appointment_path %>
+    <% elsif current_user.doctor? %>
+        <%= link_to "Todays Appointments",todays_appointments_path %>
+    <% end %>
 <% end %>

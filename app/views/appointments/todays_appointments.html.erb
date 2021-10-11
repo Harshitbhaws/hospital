@@ -1,0 +1,10 @@
+<h1>Appointments</h1>
+<td>
+  <% @todays_appointments.each do |appointment| %>
+   <tr> 
+      <%= appointment.name %>&nbspd
+      <%= appointment.address %>&nbspd
+      <%= appointment.date %>&nbspd
+    </tr>
+  <% end %>
+  </td>

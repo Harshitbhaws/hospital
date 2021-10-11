@@ -2,7 +2,9 @@
 <td>
   <% @appointments.each do |appointment| %>
    <tr> 
-      <%= link_to appointment.name,appointments_path(appointment) %>&nbsp
+      <%= link_to appointment.doctor_name,appointments_path(appointment) %>&nbspd
+      <%= link_to appointment.date,appointments_path(appointment) %>&nbspd
+      <%= link_to appointment.created_at,appointments_path(appointment) %>&nbspd
       <%= link_to "Edit",edit_appointment_path(appointment) %>
       <%= link_to "Cancel",appointment_path(appointment),method: :delete %>
     </tr><br>
