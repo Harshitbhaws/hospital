@@ -22,8 +22,12 @@
       <%= form.text_field :disease %>
     </div>
     <div>
-      <%= form.label :text %><br>
-      <%= form.text_field :text %>
+      <%= form.label :doctor %>
+      <%= form.select :user_id, options_for_select(User.all where(role: 'doctor').map{|u| [u.name, u.id]}, appointment.user&.id) %>
+    </div>
+    <div>
+      <%= form.label :description %><br>
+      <%= form.text_field :description %>
     </div>
     <div>
     <%=  %>
