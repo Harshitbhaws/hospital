@@ -13,8 +13,9 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = current_user.appointments.new(appointments_params)
-
+    
     if @appointment.save!
+      Appointment.send_sign_up_email(@appointment).deliver
       redirect_to appointment_path(@appointment)
     else
       render :new
@@ -45,11 +46,11 @@ class AppointmentsController < ApplicationController
   end
 
   def todays_appointments
-    @todays_appointments = Appointment.where(user_id: current_user.id,date: Date.today)
+    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today)
   end
 
   private
   def appointments_params
-    params.require(:appointment).permit(:name, :phone, :address, :date, :disease, :text, :user_id)
+    params.require(:appointment).permit(:name, :phone, :address, :date, :disease, :text, :doctor_id)
   end
 end

@@ -1,10 +1,15 @@
 <h1>Appointments</h1>
-<td>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Date</th>
+  </tr>
   <% @todays_appointments.each do |appointment| %>
-   <tr> 
-      <%= appointment.name %>&nbspd
-      <%= appointment.address %>&nbspd
-      <%= appointment.date %>&nbspd
+    <tr> 
+      <td><%= appointment.user.name %></td>&nbsp
+      <td><%= appointment.address %></td>&nbsp
+      <td><%= appointment.date %></td>&nbsp
     </tr>
   <% end %>
-  </td>
+</table>
