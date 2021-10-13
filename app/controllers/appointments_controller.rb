@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
     @appointment = current_user.appointments.new(appointments_params)
     
     if @appointment.save!
-      Appointment.send_sign_up_email(@appointment).deliver
+      Appointment.send_msg(@appointment).deliver
       redirect_to appointment_path(@appointment)
     else
       render :new
