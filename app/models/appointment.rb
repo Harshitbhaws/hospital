@@ -9,4 +9,8 @@ class Appointment < ApplicationRecord
     validates :date, presence: true
     validates :disease, presence: true
     validates :text, presence: true
+
+    def confirm!
+        update(confirmation: true)
+    end
 end

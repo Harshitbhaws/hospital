@@ -10,6 +10,8 @@
       <td><%= appointment.user.name %></td>&nbsp
       <td><%= appointment.address %></td>&nbsp
       <td><%= appointment.date %></td>&nbsp
+      <td><%= link_to "confirm", confirmation_appointment_path(appointment) %></td>&nbsp
     </tr>
   <% end %>
 </table>
+<%= will_paginate @todays_appointments %>

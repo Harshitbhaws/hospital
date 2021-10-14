@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
     @appointment = current_user.appointments.new(appointments_params)
     
     if @appointment.save!
-      Appointment.send_msg(@appointment).deliver
+      AppointmentMailer.send_email(@appointment,current_user).deliver_now
       redirect_to appointment_path(@appointment)
     else
       render :new
@@ -39,14 +39,24 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
-    redirect_to appointment_path
+    redirect_to my_appointments_path
   end
+
   def my_appointments
-    @appointments = current_user.appointments
+    @appointments = current_user.appointments.paginate(:page => params[:page], :per_page=>5)
   end
 
   def todays_appointments
     @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today)
+    @todays_appointments = Appointment.paginate(:page => params[:page], :per_page=>5)
+  end
+
+  def  confirmation
+    @appointment = Appointment.find(params[:id])
+    if @appointment.confirm!
+    AppointmentMailer.confirm_appointment(@appointment,current_user).deliver_now
+    redirect_to todays_appointments_path
+    end
   end
 
   private

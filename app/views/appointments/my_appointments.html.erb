@@ -3,15 +3,19 @@
   <tr>
     <th>Doctor Name</th>
     <th>Date Time</th>
+    <th>Confirmed</th>
     <th>Edit</th>
     <th>Cancel</th>  
   </tr>
   <% @appointments.each do |appointment| %>
   <tr> 
-    <td><%= link_to appointment.doctor_name,appointments_path(appointment) %>&nbsp &nbsp</td>
+    <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
     <td><%= appointment.created_at %>&nbsp &nbsp</td>
+    <td><%= appointment.confirmation ? "yes" : "no" %>&nbsp &nbsp</td>
     <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
     <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
-  </tr><br>
+  </tr>
   <% end %>
   </table>
+  <%= will_paginate @appointments %>
+

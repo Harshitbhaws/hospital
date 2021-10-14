@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     devise_for :users
     resources :doctors
     resources :patients
-    resources :appointments
+    resources :appointments do
+      get 'confirmation', on: :member
+    end
     get 'my_appointments', to: 'appointments#my_appointments'
     get 'todays_appointments', to: 'appointments#todays_appointments'
 end
