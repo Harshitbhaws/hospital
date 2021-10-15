@@ -14,11 +14,12 @@ Rails.application.routes.draw do
           root 'devise/sessions#new', as: :unauthenticated_root
         end
       end
-    devise_for :users
+    devise_for :users, :controllers => {:registrations => "registrations"}
     resources :doctors
     resources :patients
     resources :appointments do
       get 'confirmation', on: :member
+      get 'reject', on: :member
     end
     get 'my_appointments', to: 'appointments#my_appointments'
     get 'todays_appointments', to: 'appointments#todays_appointments'

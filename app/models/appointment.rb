@@ -13,4 +13,8 @@ class Appointment < ApplicationRecord
     def confirm!
         update(confirmation: true)
     end
+
+    def reject!
+        update(reject: true)
+    end
 end

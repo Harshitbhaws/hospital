@@ -6,5 +6,6 @@
         <%= link_to "Book Appointment",new_appointment_path %>
     <% elsif current_user.doctor? %>
         <%= link_to "Todays Appointments",todays_appointments_path %>
+        <%= link_to "New Doctor",new_user_registration_path	 %>
     <% end %>
 <% end %>

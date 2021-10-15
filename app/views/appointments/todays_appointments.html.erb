@@ -1,16 +1,31 @@
-<h1>Appointments</h1>
+<h1 class="appoiments">Appointments</h1>
 <table>
   <tr>
     <th>Name</th>
     <th>Address</th>
     <th>Date</th>
+    <th>Confirmation</th>
+    <th>Reject</th>
   </tr>
   <% @todays_appointments.each do |appointment| %>
     <tr> 
       <td><%= appointment.user.name %></td>&nbsp
       <td><%= appointment.address %></td>&nbsp
       <td><%= appointment.date %></td>&nbsp
-      <td><%= link_to "confirm", confirmation_appointment_path(appointment) %></td>&nbsp
+      <td>
+        <% if appointment.confirmation %>
+        <%= "confirmed" %>
+        <% else %> 
+          <%= link_to "confirm", confirmation_appointment_path(appointment) %>
+        <% end %>
+      </td>&nbsp
+      <td>
+        <% if appointment.reject %>
+        <%= "rejected" %>
+        <% else %>
+          <%= link_to "reject", reject_appointment_path(appointment) %>
+        <% end %>
+      </td>&nbsp
     </tr>
   <% end %>
 </table>

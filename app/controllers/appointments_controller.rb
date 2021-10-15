@@ -47,14 +47,21 @@ class AppointmentsController < ApplicationController
   end
 
   def todays_appointments
-    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today)
-    @todays_appointments = Appointment.paginate(:page => params[:page], :per_page=>5)
+    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
   end
 
   def  confirmation
     @appointment = Appointment.find(params[:id])
     if @appointment.confirm!
     AppointmentMailer.confirm_appointment(@appointment,current_user).deliver_now
+    redirect_to todays_appointments_path
+    end
+  end
+
+  def  reject
+    @appointment = Appointment.find(params[:id])
+    if @appointment.reject!
+    AppointmentMailer.reject_appointment(@appointment,current_user).deliver_now
     redirect_to todays_appointments_path
     end
   end
