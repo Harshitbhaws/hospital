@@ -3,55 +3,50 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 body {
     background: gray;
+    margin: 0 auto;
 }
 
 a:hover {
     color: green;
 }
-
 h1.appoiments {
     background: dodgerblue;
     text-align: center;
-    padding: 25px 0px;
+    padding: 5px 0px;
     color: white;
     font-family: fantasy;
-    font-size: 50px;
+    margin-top: 0px;
+    font-size: 45px;
 }
-
 table {
     margin: 0 auto;
     width: 75%;
 }
-
 tr {
     text-align: center;
-}th {
+}
+th {
     border-collapse: collapse;
     border: 2px solid black;
-    width: 25%;
+    width: 20%;
     padding: 20px 0px;
 }
-
 td {
     border-collapse: collapse;
     border: 1px solid black;
     padding: 20px 0px;
 }
-
 a {               
     margin: 0px 15px;
     font-size: 20px;
     color: white;
     text-decoration: none;
 }
-
 div.pagination {
     font-size: 22px;
     color: blue;
     padding-top: 30px;
 }
-
-
 h2.login {
     text-align: center;
     color: white;
@@ -61,13 +56,21 @@ h2.login {
     padding: 20px 0px;
     margin-top: -22px;
 }
-
-
-
 h1 {
     color: white;
     font-size: 40px;
     text-align: center;
     background: dodgerblue;
     padding: 24px 0px;
+}
+h2.log {
+    text-align: center;
+}
+
+.user {
+    margin-left: 43%;
+}
+
+p.alert.alert-success {
+    margin-top: -16px;
 }

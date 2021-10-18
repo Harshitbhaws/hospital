@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Doctor Name</th>
+    <th>Date Time</th>
+    <th>Edit</th>
+    <th>Cancel</th>  
+  </tr>
+  <% @approved_appointments.each do |appointment| %>
+  <tr> 
+    <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
+    <td><%= appointment.created_at %>&nbsp &nbsp</td>
+    <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
+    <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
+  </tr>
+  <% end %>
+  </table>
+  <%= will_paginate @approved_appointments %>

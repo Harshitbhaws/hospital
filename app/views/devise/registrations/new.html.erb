@@ -28,8 +28,10 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Register" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<% unless current_user.present?  %>
+  <%= render "devise/shared/links" %>
+<% end %>

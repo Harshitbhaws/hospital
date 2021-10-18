@@ -50,6 +50,18 @@ class AppointmentsController < ApplicationController
     @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
   end
 
+  def approved_appointments
+    @approved_appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
+  end
+
+  def rejected_appointments
+    @rejected_appointments = Appointment.where(doctor_id: current_user.id,reject: true).paginate(:page => params[:page], :per_page=>5)
+  end
+
+  def all_appointments
+    @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
+  end
+
   def  confirmation
     @appointment = Appointment.find(params[:id])
     if @appointment.confirm!
