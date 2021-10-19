@@ -16,7 +16,7 @@ h1.appoiments {
     color: white;
     font-family: fantasy;
     margin-top: 0px;
-    font-size: 45px;
+    font-size: 35px;
 }
 table {
     margin: 0 auto;
@@ -46,6 +46,7 @@ div.pagination {
     font-size: 22px;
     color: blue;
     padding-top: 30px;
+    text-align: center;
 }
 h2.login {
     text-align: center;
@@ -58,10 +59,11 @@ h2.login {
 }
 h1 {
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
     background: dodgerblue;
-    padding: 24px 0px;
+    padding: 5px 0px;
+    margin-top: 0px;
 }
 h2.log {
     text-align: center;
@@ -73,4 +75,22 @@ h2.log {
 
 p.alert.alert-success {
     margin-top: -16px;
+    display: none;
+}
+p.alert.alert-danger {
+    display: none;
+}
+form {
+    margin-left: 40px;
+}
+input.submit {
+    border-end-start-radius: 5px;
+}
+input {
+    margin-bottom: 5px;
+}
+fieldset {
+    width: 36%;
+    margin: auto;
+    margin-top: 60px;
 }

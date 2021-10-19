@@ -1,11 +1,10 @@
+<h1 class="all">All Appointments</h1>
 <table>
   <tr>
     <th>Doctor Name</th>
     <th>Date Time</th>
     <th>Confirmation</th>
-    <th>Reject</th>
-    <th>Edit</th>
-    <th>Cancel</th>  
+    <th>Reject</th>  
   </tr>
   <% @all_appointments.each do |appointment| %>
   <tr> 
@@ -25,8 +24,6 @@
       <%= link_to "reject", reject_appointment_path(appointment) %>
     <% end %>
   </td>&nbsp
-    <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
-    <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
   </tr>
   <% end %>
   </table>

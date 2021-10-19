@@ -4,22 +4,19 @@
             Logged in as <%= current_user.email %>
         </div>
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>&nbsp
-        <% if current_user.patient? %>
-            <%= link_to "My Appointments",my_appointments_path %>
-            <%= link_to "Book Appointment",new_appointment_path %>
-        <% elsif current_user.doctor? %>
-            <div class="dropdown">
-                <button class="dropbtn">Appointment 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <%= link_to "Todays Appointments",todays_appointments_path %>
-                    <%= link_to "Approved Appointments",approved_appointments_path %>
-                    <%= link_to "Reject Appointments", rejected_appointments_path %>
-                    <%= link_to "All Appointments", all_appointments_path %>
-                </div>
+        <%= link_to "Book Appointment",new_appointment_path if current_user.patient? %>
+        <div class="dropdown">
+            <button class="dropbtn">Appointment 
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <%= link_to "My Appointment",my_appointments_path if current_user.patient? %>
+                <%= link_to "Todays Appointments",todays_appointments_path if current_user.doctor?%>
+                <%= link_to "Approved Appointments",approved_appointments_path %>
+                <%= link_to "Reject Appointments", rejected_appointments_path %>
+                <%= link_to "All Appointments", all_appointments_path if current_user.doctor? %>
             </div>
-            <%= link_to "New Doctor",new_user_registration_path %>
-        <% end %>
+        </div>
+        <%= link_to "New Doctor",new_user_registration_path if current_user.doctor? %>
     </div>
 <% end %>

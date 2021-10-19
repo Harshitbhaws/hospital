@@ -1,16 +1,34 @@
+<h1 class="rejected">Rejected Appointments</h1>
+
 <table>
   <tr>
-    <th>Doctor Name</th>
-    <th>Date Time</th>
-    <th>Edit</th>
-    <th>Cancel</th>  
+    <% if current_user.doctor? %>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Date</th>
+      <th>Rejected</th>
+    <% else %>
+      <th>Doctor Name</th>
+      <th>Date Time</th>
+      <th>Edit</th>
+      <th>Cancel</th>
+    <% end %>
   </tr>
   <% @rejected_appointments.each do |appointment| %>
   <tr> 
-    <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
-    <td><%= appointment.created_at %>&nbsp &nbsp</td>
-    <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
-    <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
+    <% if current_user.doctor? %>
+      <td><%= appointment.name %>&nbsp &nbsp</td>
+      <td><%= appointment.address %></td>&nbsp
+      <td><%= appointment.date %></td>&nbsp
+      <% if appointment.reject %>
+        <td><%= "rejected" %></td>
+      <% end %>
+    <% else %>
+      <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
+      <td><%= appointment.created_at %>&nbsp &nbsp</td>
+      <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
+      <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
+    <% end %>
   </tr>
   <% end %>
   </table>
