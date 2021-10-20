@@ -1,39 +1,41 @@
-<%= form_with model: appointment do |form| %>
-    <div>
-      <%= form.label :name %><br>
-      <%= form.text_field :name %>
+  <div class="new">
+  <%= form_with model: appointment do |form| %>
+      <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+      </div>
+      <div>
+      <%= form.label :phone %><br>
+      <%= form.text_field :phone %>
     </div>
-    <div>
-    <%= form.label :phone %><br>
-    <%= form.text_field :phone %>
-  </div>
- 
-    <div>
-      <%= form.label :address %><br>
-      <%= form.text_field :address %>
-    </div>
-    <div>
-      <%= form.label :date %><br>
-      <%= form.date_field :date %>
-    </div>
-    <div>
-      <%= form.label :disease %><br>
-      <%= form.text_field :disease %>
-    </div>
-    <div>
-      <%= form.label :doctor %>
-      <%= form.select :doctor_id, options_for_select(User.all.where(role: 'doctor').map{|u| [u.name, u.id]}, appointment.user&.id) %>
-    </div>
-    <div>
-      <%= form.label :description %><br>
-      <%= form.text_field :text %>
-    </div>
-    <div>
-    <%=  %>
-    </div>
-
   
-    <div><br>
-      <%= form.submit %>
-    </div>
-  <% end %>
+      <div>
+        <%= form.label :address %><br>
+        <%= form.text_field :address %>
+      </div>
+      <div>
+        <%= form.label :date %><br>
+        <%= form.date_field :date %>
+      </div>
+      <div>
+        <%= form.label :disease %><br>
+        <%= form.text_field :disease %>
+      </div>
+      <div>
+        <%= form.label :doctor %>
+        <%= form.select :doctor_id, options_for_select(User.all.where(role: 'doctor').map{|u| [u.name, u.id]}, appointment.user&.id) %>
+      </div>
+      <div>
+        <%= form.label :description %><br>
+        <%= form.text_field :text %>
+      </div>
+      <div>
+      <%=  %>
+      </div>
+
+    
+      <div><br>
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>

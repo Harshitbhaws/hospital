@@ -28,7 +28,6 @@ tr {
 th {
     border-collapse: collapse;
     border: 2px solid black;
-    width: 20%;
     padding: 20px 0px;
 }
 td {
@@ -36,8 +35,7 @@ td {
     border: 1px solid black;
     padding: 20px 0px;
 }
-a {               
-    margin: 0px 15px;
+a {
     font-size: 20px;
     color: white;
     text-decoration: none;
@@ -67,10 +65,18 @@ h1 {
 }
 h2.log {
     text-align: center;
+    background-color: dodgerblue;
+    padding: 10px;
+    margin: auto;
 }
 
-.user {
-    margin-left: 43%;
+.user ,.form,.forgot{
+    margin-left: 40%;
+    margin-top: 5%;
+    text-align: center;
+    width: 20%;
+    padding: 25px;
+    background-color: olivedrab;
 }
 
 p.alert.alert-success {
@@ -80,17 +86,52 @@ p.alert.alert-success {
 p.alert.alert-danger {
     display: none;
 }
-form {
-    margin-left: 40px;
-}
 input.submit {
     border-end-start-radius: 5px;
 }
 input {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 fieldset {
     width: 36%;
     margin: auto;
     margin-top: 60px;
+}
+h2.signup {
+    background: dodgerblue;
+    text-align: center;
+    padding: 5px 0px;
+    color: white;
+    font-family: fantasy;
+    margin-top: 0px;
+    font-size: 35px;
+}
+.new{
+    margin: 70px;
+}
+.email {
+    margin-right: 70%;
+    margin-left: 15%;
+}
+.pass {
+    margin-right: 61%;
+    margin-left: 15%;
+}
+.rem {
+    margin-right: 39%;
+    margin-left: 12%;
+    margin-bottom: 20px;
+}
+.in {
+    margin-right: 49%;
+}
+.links {
+    text-align: initial;
+    margin-left: 15%;
+}
+h2.forgotpass {
+    text-align: center;
+    background: dodgerblue;
+    padding: 10px;
+    margin: auto;
 }

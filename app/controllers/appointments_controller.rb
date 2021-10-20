@@ -86,6 +86,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def dowload_link
+    
+  end
+
   private
   def appointments_params
     params.require(:appointment).permit(:name, :phone, :address, :date, :disease, :text, :doctor_id)
