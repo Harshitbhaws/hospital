@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  get 'invoices/index'
+  get 'invoices/show'
   devise_for :admins
     devise_scope :user do
       
@@ -26,5 +28,5 @@ Rails.application.routes.draw do
     get 'approved_appointments', to: 'appointments#approved_appointments'
     get 'rejected_appointments', to: 'appointments#rejected_appointments'
     get 'all_appointments', to: 'appointments#all_appointments'
-    get 'download_link', to: 'appointments#download_link'
+    get 'download_appointments', to: 'appointments#download_appointments'
 end

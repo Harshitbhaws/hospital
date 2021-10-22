@@ -3,10 +3,10 @@
     <legend>Appointment:</legend>
     <p>DoctorName:&nbsp &nbsp<%= @appointment.doctor.name %></p>
     <p>Phone:&nbsp &nbsp<%= @appointment.phone %></p>
-    <p>date:&nbsp &nbsp<%= @appointment.date %></p>
+    <p>Date:&nbsp &nbsp<%= @appointment.date %></p>
     <p>Disease:&nbsp&nbsp<%= @appointment.disease %></p>
     <p>Text:&nbsp &nbsp<%= @appointment.text %></p>
 </fieldset>
-<div>
-    <%= link_to "Download link",download_link_path %>
+<div class="link">
+    <%= link_to "Download link",download_appointments_path %>
 </div>

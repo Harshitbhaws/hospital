@@ -86,8 +86,18 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def dowload_link
-    
+  def download_appointments
+    @appointment = Appointment.find(params[:id])
+    send_data generate_pdf(@appointments),filename: "#{current_user.name}.pdf",type: "application/pdf"
+  end
+
+  def generate_pdf(current_user)
+    text @appointment.name, algin: :center
+    text  "DoctorName: #{@appointment.doctor.name}"
+    text  "Phone: #{@appointment.phone}"
+    text  "Date: #{@appointment.date}"
+    text  "Disease: #{@appointment.disease}"
+    text  "Text: #{@appointment.text}"
   end
 
   private
