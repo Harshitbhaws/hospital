@@ -22,11 +22,11 @@ Rails.application.routes.draw do
     resources :appointments do
       get 'confirmation', on: :member
       get 'reject', on: :member
+      get 'download_appointment', on: :member
     end
     get 'my_appointments', to: 'appointments#my_appointments'
     get 'todays_appointments', to: 'appointments#todays_appointments'
     get 'approved_appointments', to: 'appointments#approved_appointments'
     get 'rejected_appointments', to: 'appointments#rejected_appointments'
     get 'all_appointments', to: 'appointments#all_appointments'
-    get 'download_appointments', to: 'appointments#download_appointments'
 end

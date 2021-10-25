@@ -8,5 +8,5 @@
     <p>Text:&nbsp &nbsp<%= @appointment.text %></p>
 </fieldset>
 <div class="link">
-    <%= link_to "Download link",download_appointments_path %>
+    <%= link_to "Download appointment",download_appointment_appointment_path(@appointment), :remote => true %>
 </div>

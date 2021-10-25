@@ -86,9 +86,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def download_appointments
-    @appointment = Appointment.find(params[:id])
-    send_data generate_pdf(@appointments),filename: "#{current_user.name}.pdf",type: "application/pdf"
+  def download_appointment
+    AppointmentWorker.perform_async(params[:id],current_user.id)
+    # send_data generate_pdf(@appointments),filename: "#{current_user.name}.pdf",type: "application/pdf"
   end
 
   def generate_pdf(current_user)
