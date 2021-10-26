@@ -91,14 +91,14 @@ class AppointmentsController < ApplicationController
     # send_data generate_pdf(@appointments),filename: "#{current_user.name}.pdf",type: "application/pdf"
   end
 
-  def generate_pdf(current_user)
-    text @appointment.name, algin: :center
-    text  "DoctorName: #{@appointment.doctor.name}"
-    text  "Phone: #{@appointment.phone}"
-    text  "Date: #{@appointment.date}"
-    text  "Disease: #{@appointment.disease}"
-    text  "Text: #{@appointment.text}"
-  end
+  # def generate_pdf(current_user)
+  #   text @appointment.name, algin: :center
+  #   text  "DoctorName: #{@appointment.doctor.name}"
+  #   text  "Phone: #{@appointment.phone}"
+  #   text  "Date: #{@appointment.date}"
+  #   text  "Disease: #{@appointment.disease}"
+  #   text  "Text: #{@appointment.text}"
+  # end
 
   private
   def appointments_params
