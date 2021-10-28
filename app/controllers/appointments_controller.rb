@@ -5,6 +5,13 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render template: "appointments/show_appointment.html.erb",
+          pdf: "Appointment ID: #{@appointment.id}"
+      end
+    end
   end
 
   def new
