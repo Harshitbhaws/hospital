@@ -6,16 +6,16 @@ class AppointmentWorker
     appointment = Appointment.find(appointment_id)
     user = User.find(user_id)
     html_string = AppointmentsController.renderer.render(
-  file: "appointments/show",
-  :formats => [:pdf,:html],
-  locals: {
-    :@routing_form => self,
-    :controller_name => appointments_controller,
-    :action_name => download_appointment,
-    :current_user => current_user
-  },
-  :layout  => '/layouts/application'
-)
+    file: "appointments/show",
+    :formats => [:pdf,:html],
+    locals: {
+      :@routing_form => self,
+      :controller_name => appointments_controller,
+      :action_name => download_appointment,
+      :current_user => current_user
+    },
+      :layout  => '/layouts/application'
+    )
   #   respond_to do |format|
   #     format.html
   #     format.pdf do

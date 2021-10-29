@@ -6,11 +6,11 @@
         <%= link_to 'Logout', destroy_user_session_path, method: :delete %>&nbsp
         <%= link_to "Book Appointment",new_appointment_path if current_user.patient? %>
         <div class="dropdown">
-            <button class="dropbtn">Appointment 
+            <button class="dropbtn">Appointments
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <%= link_to "My Appointment",my_appointments_path if current_user.patient? %>
+                <%= link_to "My Appointments",my_appointments_path if current_user.patient? %>
                 <%= link_to "Todays Appointments",todays_appointments_path if current_user.doctor?%>
                 <%= link_to "Approved Appointments",approved_appointments_path %>
                 <%= link_to "Reject Appointments", rejected_appointments_path %>

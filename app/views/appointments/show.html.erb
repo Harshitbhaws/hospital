@@ -8,6 +8,8 @@
     <p>Disease:&nbsp&nbsp<%= @appointment.disease %></p>
     <p>Text:&nbsp &nbsp<%= @appointment.text %></p>
 </fieldset>
-<div class="link">
-    <%= link_to "Download appointment",appointment_path(@appointment, format: :pdf) %>
-</div>
+<% if request.format == 'html' %>
+    <div class="link">
+        <%= link_to "Download appointment",appointment_path(@appointment, format: :pdf) %>
+    </div>
+<% end %>
