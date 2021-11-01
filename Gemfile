@@ -30,6 +30,9 @@ gem 'bootstrap', '~> 5.1.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
 # Use Active Storage variant
+gem 'rubyzip'
+gem 'axlsx'
+gem 'axlsx_rails'
 # gem 'image_processing', '~> 1.2'
 gem 'sidekiq'
 # Reduces boot times through caching; required in config/boot.rb

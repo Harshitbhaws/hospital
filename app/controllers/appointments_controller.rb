@@ -1,17 +1,21 @@
 class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   def show
     @appointment = Appointment.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render template: "appointments/show.html.erb",
-          pdf: "Appointment ID: #{@appointment.id}"
-      end
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     render template: "appointments/show.html.erb",
+    #       pdf: "Appointment ID: #{@appointment.id}"
+    #   end
+    # end
   end
 
   def new
@@ -93,7 +97,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def export_appointment
+  def export_appointments
     AppointmentWorker.perform_async(params[:id],current_user.id)
     # send_data generate_pdf(@appointments),filename: "#{current_user.name}.pdf",type: "application/pdf"
   end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :appointments do
       get 'confirmation', on: :member
       get 'reject', on: :member
-      get 'export_appointment', on: :member
+      get 'export_appointments', on: :member
     end
     get 'my_appointments', to: 'appointments#my_appointments'
     get 'todays_appointments', to: 'appointments#todays_appointments'
