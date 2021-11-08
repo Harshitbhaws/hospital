@@ -53,6 +53,14 @@ class AppointmentsController < ApplicationController
     redirect_to my_appointments_path
   end
 
+  def states
+    if current_user.doctor?
+      @approved_appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
+    else
+      @approved_appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
+    end
+  end
+
   def my_appointments
     @appointments = current_user.appointments.paginate(:page => params[:page], :per_page=>5)
   end

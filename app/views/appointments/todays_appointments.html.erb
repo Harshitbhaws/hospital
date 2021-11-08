@@ -12,7 +12,7 @@
       <td><%= appointment.user.name %></td>&nbsp
       <td><%= appointment.address %></td>&nbsp
       <td><%= appointment.date %></td>&nbsp
-      <td>
+      <%= form.select :state, options_for_select(User.all.where(role: 'doctor').map{|u| [u.name, u.id]}, appointment.user&.id) %><td>
         <% if appointment.confirmation %>
         <%= "confirmed" %>
         <% else %> 

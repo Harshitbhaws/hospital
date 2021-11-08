@@ -29,4 +29,5 @@ Rails.application.routes.draw do
     get 'approved_appointments', to: 'appointments#approved_appointments'
     get 'rejected_appointments', to: 'appointments#rejected_appointments'
     get 'all_appointments', to: 'appointments#all_appointments'
+    get 'states', to: 'appointments#states'
 end

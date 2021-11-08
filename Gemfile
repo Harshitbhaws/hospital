@@ -6,6 +6,9 @@ ruby '3.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use sqlite3 as the database for Active Record
+gem 'after_commit_everywhere', '~> 1.0'
+gem "nobrainer", "~> 0.33.0"
+gem "redis-objects"
 # Use the devise gem as the session and account manager for the application
 gem 'devise'
 # Use Puma as the app server
