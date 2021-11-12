@@ -56,7 +56,7 @@ class AppointmentsController < ApplicationController
   def states
     if current_user.doctor?
       @approved_appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
-    else
+    else 
       @approved_appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
     end
   end
