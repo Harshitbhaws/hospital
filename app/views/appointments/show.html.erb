@@ -11,6 +11,5 @@
 <% if request.format == 'html' %>
     <div class="link">
         <%= link_to "Download appointment",appointment_path(@appointment, format: :pdf) %>
-        <%= link_to 'Download as Excel', appointment_path(format: :xlsx) %>
     </div>
 <% end %>

@@ -13,7 +13,7 @@
       <th>Cancel</th>
     <% end %>
   </tr>
-  <% @approved_appointments.each do |appointment| %>
+  <%= @approved_appointments.each do |appointment| %>
   <tr> 
     <% if current_user.doctor? %>
         <td><%= appointment.user.name %></td>&nbsp

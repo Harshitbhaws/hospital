@@ -6,7 +6,7 @@ class Doctor < ApplicationRecord
     validates :address, presence: true
     validates :specialization, presence: true
     def confirmation?
-        role == "confiration"
+        role == "confirmation"
       end
     
       def reject?
