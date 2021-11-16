@@ -2,7 +2,7 @@ class Appointment < ApplicationRecord
 
     belongs_to :user
     belongs_to :doctor, class_name: "User"
-
+    enum state: { 'confirm': 0, 'rejected': 1}  
     validates :name, presence: true
     validates :phone, presence: true
     validates :address, presence: true
@@ -11,10 +11,10 @@ class Appointment < ApplicationRecord
     validates :text, presence: true
 
     def confirm!
-        update(confirmation: true)
+        update(confirm: true)
     end
 
-    def reject!
-        update(reject: true)
+    def rejected!
+        update(rejected: true)
     end
 end

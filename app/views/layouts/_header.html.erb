@@ -11,10 +11,10 @@
             </button>
             <div class="dropdown-content">
                 <%= link_to "My Appointments",my_appointments_path if current_user.patient? %>
-                <%= link_to "Todays Appointments",todays_appointments_path if current_user.doctor?%>
-                <%= link_to "Approved Appointments",approved_appointments_path %>
-                <%= link_to "Reject Appointments", rejected_appointments_path %>
-                <%= link_to "All Appointments", all_appointments_path if current_user.doctor? %>
+                <%= link_to "Todays Appointments",appointments_path("state": "today") if current_user.doctor?%>
+                <%= link_to "Approved Appointments",appointments_path("state": "approved") %>
+                <%= link_to "Reject Appointments", appointments_path("state": "rejected") %>
+                <%= link_to "All Appointments", appointments_path("state": "all") if current_user.doctor? %>
             </div>
         </div>
         <%= link_to "New Doctor",new_user_registration_path if current_user.doctor? %>
