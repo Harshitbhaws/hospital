@@ -5,12 +5,21 @@ class AppointmentsController < ApplicationController
       format.html
       format.xlsx
     end
+    @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
+
     @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
+    
     if current_user.doctor?
       @approved_appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
     else
       @approved_appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
     end
+    if current_user.doctor?
+      @rejected_appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
+    else
+      @rejected_appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
+    end
+      @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
   end
 
   def show
@@ -70,9 +79,9 @@ class AppointmentsController < ApplicationController
   #   @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
   # end
 
-  def all_appointments
-    @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
-  end
+  # def all_appointments
+  #   @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
+  # end
 
   # def approved_appointments
   #   if current_user.doctor?
@@ -82,13 +91,13 @@ class AppointmentsController < ApplicationController
   #   end
   # end
 
-  def rejected_appointments
-    if current_user.doctor?
-      @rejected_appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
-    else
-      @rejected_appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
-    end
-  end
+  # def rejected_appointments
+  #   if current_user.doctor?
+  #     @rejected_appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
+  #   else
+  #     @rejected_appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
+  #   end
+  # end
 
   def  confirmation
     @appointment = Appointment.find(params[:id])
