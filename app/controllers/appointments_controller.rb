@@ -1,25 +1,32 @@
 class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
+    @heading = "Appointments"
     respond_to do |format|
       format.html
       format.xlsx
     end
-    @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
-
-    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
-    
-    if current_user.doctor?
-      @approved_appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
-    else
-      @approved_appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
+    if params[:state] == "today"
+      @heading = "Todays Appointments"
+      @appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
+    elsif params[:state] == "approved"
+      @heading = "Approved Appointments"
+      if current_user.doctor?
+        @appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
+      else
+        @appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
+      end
+    elsif params[:state] == "reject"
+      @heading = "Rejected appointments"
+      if current_user.doctor?
+        @appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
+      else
+        @appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
+      end
+    elsif params[:state] == "all"
+        @heading = "All"
+        @appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
     end
-    if current_user.doctor?
-      @rejected_appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
-    else
-      @rejected_appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
-    end
-      @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
   end
 
   def show
