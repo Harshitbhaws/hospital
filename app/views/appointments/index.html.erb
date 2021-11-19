@@ -1,21 +1,14 @@
-<% if @heading == "Today Apppointments" %>
-    <h1 class="appointments">Todays Appointments</h1>
-<% elsif @heading == "Approved Apppointments" %>
-    <h1 class="appointments">Approved Appointments</h1>
-<% elsif @heading == "Rejected Apppointments" %>
-    <h1 class="appointments">Rejected Appointments</h1>
-<% else %>
-    <h1 class="appointments">All Appointments</h1>
-<% end %>
+<h1><%= @heading %></h1>
 <table>
     <tr>
         <% if current_user.doctor? %>
             <th>Name</th>
             <th>Address</th>
             <th>Date</th>
-            <% if params[:state] == "today" || params[:state] == "approved" || params[:state] == "all" %>
+            <% if params[:state] == "today" || "approved" || "all" %>
             <th>Confirmation</th>
-            <% elsif params[:state] == "reject" ||  params[:state] == "all" %>
+            <% end %> 
+            <% if params[:state] == "today" || "rejected" || "all" %>
             <th>Reject</th>
             <% end %>
         <% else %>
@@ -39,11 +32,13 @@
             <% end %>
         </td>&nbsp
         <td>
-            <% if appointment.reject %>
+        <% unless params[:state] == "approved" %>
+            <% if appointment.reject == true %>
             <%= "rejected" %>
             <% else %>
             <%= link_to "reject", reject_appointment_path(appointment) %>
             <% end %>
+        <% end %>
         </td>&nbsp
     <% else %>
         <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
@@ -54,3 +49,4 @@
     </tr>
     <% end %>
 </table>
+<%= will_paginate @appointments %>

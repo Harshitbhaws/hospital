@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_15_092008) do
+ActiveRecord::Schema.define(version: 2021_11_19_064253) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_092008) do
     t.boolean "confirmation", default: false
     t.boolean "reject", default: false
     t.string "state"
+    t.boolean "rejected"
   end
 
   create_table "doctors", force: :cascade do |t|

@@ -12,11 +12,11 @@ class AppointmentsController < ApplicationController
     elsif params[:state] == "approved"
       @heading = "Approved Appointments"
       if current_user.doctor?
-        @appointments = Appointment.where(doctor_id: current_user.id,confirmation: true).paginate(:page => params[:page], :per_page=>5)
+        @appointments = Appointment.where(doctor_id: current_user.id,confirmation: true,reject: false).paginate(:page => params[:page], :per_page=>5)
       else
-        @appointments = current_user.appointments.where(confirmation: true).paginate(:page => params[:page], :per_page=>5) 
+        @appointments = current_user.appointments.where(confirmation: true,reject: false).paginate(:page => params[:page], :per_page=>5) 
       end
-    elsif params[:state] == "reject"
+    elsif params[:state] == "rejected"
       @heading = "Rejected appointments"
       if current_user.doctor?
         @appointments = Appointment.where(doctor_id: current_user.id,rejected: true).paginate(:page => params[:page], :per_page=>5)
@@ -24,7 +24,7 @@ class AppointmentsController < ApplicationController
         @appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
       end
     elsif params[:state] == "all"
-        @heading = "All"
+        @heading = "All Appointments"
         @appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
     end
   end
@@ -35,6 +35,7 @@ class AppointmentsController < ApplicationController
       format.html
       format.pdf do
         render template: "appointments/show.html.erb",
+
           pdf: "Appointment ID: #{@appointment.id}"
       end
     end
