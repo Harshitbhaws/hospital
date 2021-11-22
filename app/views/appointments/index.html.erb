@@ -7,7 +7,7 @@
             <th>Date</th>
             <% if params[:state] == "today" || "approved" || "all" %>
             <th>Confirmation</th>
-            <% end %> 
+            <% end %>
             <% if params[:state] == "today" || "rejected" || "all" %>
             <th>Reject</th>
             <% end %>
@@ -24,6 +24,7 @@
         <td><%= appointment.user.name %></td>&nbsp
         <td><%= appointment.address %></td>&nbsp
         <td><%= appointment.date %></td>&nbsp
+        <% unless params[:state] == "rejected" %>
         <td>
             <% if appointment.confirmation %>
             <%= "confirmed" %>
@@ -31,15 +32,16 @@
             <%= link_to "confirm", confirmation_appointment_path(appointment) %>
             <% end %>
         </td>&nbsp
-        <td>
+        <% end %>
         <% unless params[:state] == "approved" %>
+        <td>
             <% if appointment.reject == true %>
             <%= "rejected" %>
             <% else %>
             <%= link_to "reject", reject_appointment_path(appointment) %>
             <% end %>
-        <% end %>
         </td>&nbsp
+        <% end %>
     <% else %>
         <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
         <td><%= appointment.created_at %>&nbsp &nbsp</td>

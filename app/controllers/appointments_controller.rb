@@ -76,16 +76,13 @@ class AppointmentsController < ApplicationController
     redirect_to my_appointments_path
   end
 
-  def states
-  end
-
   def my_appointments
     @appointments = current_user.appointments.paginate(:page => params[:page], :per_page=>5)
   end
 
-  # def todays_appointments
-  #   @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
-  # end
+  def todays_appointments
+    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
+  end
 
   # def all_appointments
   #   @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
