@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  before_action :if_doctor, only: [:confirmation, :reject]
+
   def index
     @appointments = Appointment.all
     @heading = "Appointments"
@@ -42,7 +44,7 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = Appointment.new
+      @appointment = Appointment.new
   end
 
   def create
@@ -77,12 +79,16 @@ class AppointmentsController < ApplicationController
   end
 
   def my_appointments
-    @appointments = current_user.appointments.paginate(:page => params[:page], :per_page=>5)
+    if current_user.role == "patient"
+      @appointments = current_user.appointments.paginate(:page => params[:page], :per_page=>5)
+    else
+      "You are not authenticate person for this action"
+    end
   end
 
-  def todays_appointments
-    @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
-  end
+  # def todays_appointments
+  #   @todays_appointments = Appointment.where(doctor_id: current_user.id,date: Date.today).paginate(:page => params[:page], :per_page=>5)
+  # end
 
   # def all_appointments
   #   @all_appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
@@ -105,19 +111,29 @@ class AppointmentsController < ApplicationController
   # end
 
   def  confirmation
-    @appointment = Appointment.find(params[:id])
-    if @appointment.confirm!
-    AppointmentMailer.confirm_appointment(@appointment,current_user).deliver_now
-    redirect_to todays_appointments_path
-    end
+    # if current_user.role == "doctor"
+      @appointment = Appointment.find(params[:id])
+      if @appointment.confirmation!
+        AppointmentMailer.confirm_appointment(@appointment,current_user).deliver_now
+        redirect_to appointments_path
+      end
+    # else
+      # redirect_to new_user_session_path
+      # "You are not aunthenticate person for this action"
+    # end
   end
 
   def  reject
-    @appointment = Appointment.find(params[:id])
-    if @appointment.reject!
-    AppointmentMailer.reject_appointment(@appointment,current_user).deliver_now
-    redirect_to todays_appointments_path
-    end
+    # if current_user.role == "doctor"
+      @appointment = Appointment.find(params[:id])
+      if @appointment.rejected!
+        AppointmentMailer.reject_appointment(@appointment,current_user).deliver_now
+        redirect_to appointments_path
+      end
+    # else
+      # redirect_to new_user_session_path
+      # "You are not aunthenticate person for this action"
+    # end
   end
 
   def export_appointments
@@ -128,5 +144,9 @@ class AppointmentsController < ApplicationController
   private
   def appointments_params
     params.require(:appointment).permit(:name, :phone, :address, :date, :disease, :text, :doctor_id)
+  end
+
+  def if_doctor
+    redirect_to new_user_session_path unless current_user.role == "doctor"
   end
 end

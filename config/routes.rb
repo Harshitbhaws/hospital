@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     devise_scope :user do
       
         authenticated :user, ->(u) { u.role=="doctor" } do
-          root to: "appointments#todays_appointments", as: :doctor_root
+          root to: "appointments#index", as: :doctor_root
         end
         authenticated :user, ->(u) { u.role=="patient" } do
           root to: "appointments#my_appointments", as: :patient_root

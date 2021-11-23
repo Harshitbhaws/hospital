@@ -5,10 +5,10 @@
             <th>Name</th>
             <th>Address</th>
             <th>Date</th>
-            <% if params[:state] == "today" || "approved" || "all" %>
+            <% unless params[:state] == "rejected" %>
             <th>Confirmation</th>
             <% end %>
-            <% if params[:state] == "today" || "rejected" || "all" %>
+            <% unless params[:state] == "approved" %>
             <th>Reject</th>
             <% end %>
         <% else %>
@@ -21,7 +21,7 @@
     <% @appointments.each do |appointment| %>
     <tr>
     <% if current_user.doctor? %>
-        <td><%= appointment.user.name %></td>&nbsp
+        <td><%= appointment.user&.name %></td>&nbsp
         <td><%= appointment.address %></td>&nbsp
         <td><%= appointment.date %></td>&nbsp
         <% unless params[:state] == "rejected" %>
@@ -35,7 +35,7 @@
         <% end %>
         <% unless params[:state] == "approved" %>
         <td>
-            <% if appointment.reject == true %>
+            <% if appointment.rejected == true %>
             <%= "rejected" %>
             <% else %>
             <%= link_to "reject", reject_appointment_path(appointment) %>
@@ -51,4 +51,3 @@
     </tr>
     <% end %>
 </table>
-<%= will_paginate @appointments %>
