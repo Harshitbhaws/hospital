@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :if_doctor, only: [:confirmation, :reject]
 
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.all.paginate(:page => params[:page], :per_page=>5)
     @heading = "Appointments"
     respond_to do |format|
       format.html
