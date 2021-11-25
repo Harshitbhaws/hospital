@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
+  require 'sidekiq/web'
 
+  mount Sidekiq::Web => '/sidekiq'
   get 'invoices/index'
   get 'invoices/show'
   devise_for :admins

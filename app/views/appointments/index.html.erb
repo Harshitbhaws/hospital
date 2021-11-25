@@ -14,7 +14,9 @@
         <% else %>
             <th>Doctor Name</th>
             <th>Date Time</th>
+            <% unless params[:state] == "rejected" %>
             <th>Edit</th>
+            <% end %>
             <th>Cancel</th>
         <% end %>
     </tr>
@@ -45,7 +47,9 @@
     <% else %>
         <td><%= appointment.doctor&.name %>&nbsp &nbsp</td>
         <td><%= appointment.created_at %>&nbsp &nbsp</td>
+        <% unless params[:state] == "rejected" %>
         <td><%= link_to "Edit",edit_appointment_path(appointment) %>&nbsp &nbsp</td>
+        <% end %>
         <td><%= link_to "Cancel",appointment_path(appointment),method: :delete %></td>
     <% end %>
     </tr>

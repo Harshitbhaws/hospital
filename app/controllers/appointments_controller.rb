@@ -26,8 +26,8 @@ class AppointmentsController < ApplicationController
         @appointments = current_user.appointments.where(rejected: true).paginate(:page => params[:page], :per_page=>5) 
       end
     elsif params[:state] == "all"
-        @heading = "All Appointments"
-        @appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
+      @heading = "All Appointments"
+      @appointments = Appointment.where(doctor_id: current_user.id).paginate(:page => params[:page], :per_page=>5)
     end
   end
 
@@ -51,7 +51,7 @@ class AppointmentsController < ApplicationController
     @appointment = current_user.appointments.new(appointments_params)
     
     if @appointment.save!
-      AppointmentMailer.send_email(@appointment,current_user).deliver_now
+      AppointmentWorker.new.abc(@appointment,current_user.id)
       redirect_to appointment_path(@appointment)
     else
       render :new
